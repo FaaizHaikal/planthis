@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "805807696706",
+    "project_id": "planthis-imk",
+    "storage_bucket": "planthis-imk.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:805807696706:android:bed4cbc132d1d21f6076db",
+        "android_client_info": {
+          "package_name": "com.example.planthis"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "805807696706-sosjh5oov7ofb3qe7g6a83plne5r7mrk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.planthis",
+            "certificate_hash": "a5981374f7319e1288eb07e80219f676252100a8"
+          }
+        },
+        {
+          "client_id": "805807696706-dfsi6tarmpj8pnu624lsdmo9hj9d5nt9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJCtWYxsdoxM5O3jVQcuXQ1NcIlwcHoHM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "805807696706-dfsi6tarmpj8pnu624lsdmo9hj9d5nt9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
