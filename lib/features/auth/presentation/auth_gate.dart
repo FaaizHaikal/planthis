@@ -20,6 +20,7 @@ class AuthGate extends StatelessWidget {
         }
 
         if (snapshot.hasData) {
+          // TODO: Change this to dashboard screen
           WidgetsBinding.instance.addPostFrameCallback((_) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
