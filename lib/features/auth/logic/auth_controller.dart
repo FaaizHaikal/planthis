@@ -1,12 +1,11 @@
-
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:planthis/core/models/user.dart';
 import 'package:planthis/features/auth/data/auth_service.dart';
 
-final AuthControllerProvider = StateNotifierProvider<AuthController, AsyncValue<AppUser?>>(
-  (ref) => AuthController(ref),
-);
+final authControllerProvider =
+    StateNotifierProvider<AuthController, AsyncValue<AppUser?>>(
+      (ref) => AuthController(ref),
+    );
 
 class AuthController extends StateNotifier<AsyncValue<AppUser?>> {
   final Ref ref;

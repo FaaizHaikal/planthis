@@ -6,7 +6,10 @@ class AuthService {
 
   Future<User?> signInWithEmail(String email, String password) async {
     try {
-      final result = await _firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
+      final result = await _firebaseAuth.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
 
       return result.user;
     } catch (e) {
@@ -16,7 +19,10 @@ class AuthService {
 
   Future<User?> registerWithEmail(String email, String password) async {
     try {
-      final result = await _firebaseAuth.createUserWithEmailAndPassword(email: email, password: password);
+      final result = await _firebaseAuth.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
 
       return result.user;
     } catch (e) {
@@ -29,7 +35,7 @@ class AuthService {
       final googleUser = await GoogleSignIn().signIn();
 
       if (googleUser == null) {
-        throw("Google account not found");
+        throw ("Google account not found");
       }
 
       final googleAuth = await googleUser.authentication;
