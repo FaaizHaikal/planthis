@@ -4,12 +4,13 @@ import 'app_fonts.dart';
 
 class AppTheme {
   static ThemeData appTheme = ThemeData(
-    brightness: Brightness.dark,
+    brightness: Brightness.light,
     scaffoldBackgroundColor: AppColors.background,
     fontFamily: AppFonts.primary,
     colorScheme: ColorScheme.light(
       primary: AppColors.primary,
       secondary: AppColors.secondary,
+      brightness: Brightness.light,
     ),
     textTheme: const TextTheme(
       titleLarge: TextStyle(color: AppColors.textPrimary),
