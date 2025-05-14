@@ -1,11 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:planthis/app/utils.dart';
 import 'package:planthis/core/models/user.dart';
-import 'package:planthis/features/auth/data/auth_service.dart';
-
-final authControllerProvider =
-    StateNotifierProvider<AuthController, AsyncValue<AppUser?>>(
-      (ref) => AuthController(ref),
-    );
+import 'package:planthis/features/auth/services/auth_service.dart';
 
 class AuthController extends StateNotifier<AsyncValue<AppUser?>> {
   final Ref ref;
@@ -22,6 +18,16 @@ class AuthController extends StateNotifier<AsyncValue<AppUser?>> {
   }
 
   Future<void> login(String email, String password) async {
+    if (email.isEmpty || password.isEmpty) {
+      state = AsyncValue.error("Email and password can not be empty", StackTrace.current);
+      return;
+    }
+
+    if (!email.validateEmail()) {
+      state = AsyncValue.error("Email is not valid", StackTrace.current);
+      return;
+    }
+
     state = AsyncValue.loading();
     try {
       final user = await _authService.signInWithEmail(email, password);
@@ -31,7 +37,22 @@ class AuthController extends StateNotifier<AsyncValue<AppUser?>> {
     }
   }
 
-  Future<void> register(String email, String password) async {
+  Future<void> register(String email, String password, String confirmPassword) async {
+    if (email.isEmpty || password.isEmpty) {
+      state = AsyncValue.error("Email and password can not be empty", StackTrace.current);
+      return;
+    }
+
+    if (!email.validateEmail()) {
+      state = AsyncValue.error("Email is not valid", StackTrace.current);
+      return;
+    }
+
+    if (!password.hasMinLength(8) && !password.hasNumber() && !AppUtils.passwordMatch(password, confirmPassword)) {
+      state = AsyncValue.error("Password rules are not met", StackTrace.current);
+      return;
+    }
+  
     state = AsyncValue.loading();
     try {
       final user = await _authService.registerWithEmail(email, password);

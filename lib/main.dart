@@ -2,9 +2,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:planthis/app/theme/app_theme.dart';
-import 'package:planthis/features/auth/presentation/auth_gate.dart';
-import 'package:planthis/features/auth/presentation/login_screen.dart';
-import 'package:planthis/features/auth/presentation/register_screen.dart';
+import 'package:planthis/features/auth/presentations/auth_gate.dart';
+import 'package:planthis/features/auth/presentations/login_screen.dart';
+import 'package:planthis/features/auth/presentations/register_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
