@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:planthis/app/theme/app_colors.dart';
-import '../logic/auth_controller.dart';
+import 'package:planthis/features/auth/providers/auth_provider.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({super.key});
@@ -13,14 +13,11 @@ class LoginScreen extends ConsumerStatefulWidget {
 class _LoginScreenState extends ConsumerState<LoginScreen> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-  String? errorMessage;
-
-  bool isValidEmail(String email) =>
-      RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(email);
 
   @override
   Widget build(BuildContext context) {
     final authState = ref.watch(authControllerProvider);
+    final authController = ref.read(authControllerProvider.notifier);
 
     return Scaffold(
       appBar: AppBar(title: const Text('Login')),
@@ -29,9 +26,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            if (errorMessage != null || authState.hasError)
+            if (authState.hasError)
               Text(
-                errorMessage ?? authState.error.toString(),
+                authState.error.toString(),
                 style: const TextStyle(color: Colors.red),
               ),
             TextField(
@@ -45,25 +42,11 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
             ),
             const SizedBox(height: 20),
             ElevatedButton(
-              onPressed: () {
+              onPressed: () async {
                 final email = emailController.text.trim();
                 final password = passwordController.text.trim();
 
-                if (email.isEmpty || password.isEmpty) {
-                  setState(
-                    () => errorMessage = 'Email and password are required.',
-                  );
-                  return;
-                }
-                if (!isValidEmail(email)) {
-                  setState(() => errorMessage = 'Enter a valid email address.');
-                  return;
-                }
-
-                setState(() => errorMessage = null);
-                ref
-                    .read(authControllerProvider.notifier)
-                    .login(email, password);
+                await authController.login(email, password);
               },
               child: const Text('Login'),
             ),
