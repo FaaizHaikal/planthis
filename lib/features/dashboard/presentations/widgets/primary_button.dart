@@ -4,6 +4,7 @@ import 'package:planthis/app/theme/app_colors.dart';
 
 class PrimaryButton extends StatelessWidget {
   final IconData mainIcon;
+  final double iconSizeRatio;
   final String title;
   final String body;
   final String onClickRoute;
@@ -11,6 +12,7 @@ class PrimaryButton extends StatelessWidget {
   const PrimaryButton({
     super.key,
     required this.mainIcon,
+    required this.iconSizeRatio,
     required this.title,
     required this.body,
     required this.onClickRoute,
@@ -22,7 +24,7 @@ class PrimaryButton extends StatelessWidget {
 
     final iconSize = screenWidth * 0.12;
     final titleSize = screenWidth * 0.06;
-    final bodySize = screenWidth * 0.03; 
+    final bodySize = screenWidth * 0.03;
 
     return SizedBox(
       width: double.infinity,
@@ -53,24 +55,33 @@ class PrimaryButton extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  FaIcon(
-                    mainIcon,
-                    size: iconSize * 1.5
-                  ),
+                  FaIcon(mainIcon, size: iconSize * iconSizeRatio),
                   SizedBox(width: screenWidth * 0.04),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(title, style: TextStyle(color: AppColors.textPrimary, fontSize:titleSize, fontWeight: FontWeight.bold, height: 1.1)),
-                      Text(body, style: TextStyle(color: AppColors.textPrimary, fontSize: bodySize, height: 1.1)),
+                      Text(
+                        title,
+                        style: TextStyle(
+                          color: AppColors.textPrimary,
+                          fontSize: titleSize,
+                          fontWeight: FontWeight.bold,
+                          height: 1.1,
+                        ),
+                      ),
+                      Text(
+                        body,
+                        style: TextStyle(
+                          color: AppColors.textPrimary,
+                          fontSize: bodySize,
+                          height: 1.1,
+                        ),
+                      ),
                     ],
                   ),
                 ],
               ),
-              FaIcon(
-                FontAwesomeIcons.circleArrowRight,
-                size: iconSize * 0.7
-              ),
+              FaIcon(FontAwesomeIcons.circleArrowRight, size: iconSize * 0.7),
             ],
           ),
         ),
