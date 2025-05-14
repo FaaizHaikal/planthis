@@ -56,11 +56,17 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
             ),
             PasswordRequirement(
               requirement: 'Passwords match',
-              isValid: AppUtils.passwordMatch(passwordController.text, confirmPasswordController.text)
+              isValid: AppUtils.passwordMatch(
+                passwordController.text,
+                confirmPasswordController.text,
+              ),
             ),
             if (authState.hasError) ...[
               const SizedBox(height: 4),
-              Text(authState.error.toString(), style: const TextStyle(color: Colors.red)),
+              Text(
+                authState.error.toString(),
+                style: const TextStyle(color: Colors.red),
+              ),
             ],
             const SizedBox(height: 20),
             ElevatedButton(

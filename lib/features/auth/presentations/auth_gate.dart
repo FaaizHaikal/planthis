@@ -1,6 +1,7 @@
 // features/auth/presentation/auth_gate.dart
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:planthis/features/dashboard/presentations/dashboard_screen.dart';
 // import '../../dashboard/presentation/dashboard_screen.dart';
 import 'login_screen.dart';
 
@@ -19,20 +20,9 @@ class AuthGate extends StatelessWidget {
         }
 
         if (snapshot.hasData) {
-          // TODO: Change this to dashboard screen
-          WidgetsBinding.instance.addPostFrameCallback((_) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text('You\'ve logged in as ${snapshot.data!.email}'),
-                duration: const Duration(seconds: 3),
-              ),
-            );
-          });
-
-          return LoginScreen();
-          // return const DashboardScreen(); // Protected page
+          return DashboardScreen();
         } else {
-          return LoginScreen(); // Public login screen
+          return LoginScreen();
         }
       },
     );
