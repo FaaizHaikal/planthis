@@ -19,7 +19,10 @@ class AuthController extends StateNotifier<AsyncValue<AppUser?>> {
 
   Future<void> login(String email, String password) async {
     if (email.isEmpty || password.isEmpty) {
-      state = AsyncValue.error("Email and password can not be empty", StackTrace.current);
+      state = AsyncValue.error(
+        "Email and password can not be empty",
+        StackTrace.current,
+      );
       return;
     }
 
@@ -37,9 +40,16 @@ class AuthController extends StateNotifier<AsyncValue<AppUser?>> {
     }
   }
 
-  Future<void> register(String email, String password, String confirmPassword) async {
+  Future<void> register(
+    String email,
+    String password,
+    String confirmPassword,
+  ) async {
     if (email.isEmpty || password.isEmpty) {
-      state = AsyncValue.error("Email and password can not be empty", StackTrace.current);
+      state = AsyncValue.error(
+        "Email and password can not be empty",
+        StackTrace.current,
+      );
       return;
     }
 
@@ -48,11 +58,16 @@ class AuthController extends StateNotifier<AsyncValue<AppUser?>> {
       return;
     }
 
-    if (!password.hasMinLength(8) && !password.hasNumber() && !AppUtils.passwordMatch(password, confirmPassword)) {
-      state = AsyncValue.error("Password rules are not met", StackTrace.current);
+    if (!password.hasMinLength(8) &&
+        !password.hasNumber() &&
+        !AppUtils.passwordMatch(password, confirmPassword)) {
+      state = AsyncValue.error(
+        "Password rules are not met",
+        StackTrace.current,
+      );
       return;
     }
-  
+
     state = AsyncValue.loading();
     try {
       final user = await _authService.registerWithEmail(email, password);

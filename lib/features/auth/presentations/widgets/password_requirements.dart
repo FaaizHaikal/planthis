@@ -5,10 +5,10 @@ class PasswordRequirement extends StatelessWidget {
   final bool isValid;
 
   const PasswordRequirement({
-    Key? key,
+    super.key,
     required this.requirement,
     required this.isValid,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
