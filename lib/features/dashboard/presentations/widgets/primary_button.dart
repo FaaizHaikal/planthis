@@ -43,9 +43,10 @@ class PrimaryButton extends StatelessWidget {
             return AppColors.secondary;
           }),
           shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-            RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12.0), // Adjust radius here
-            ),
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.0)),
+          ),
+          elevation: WidgetStateProperty.resolveWith<double>(
+            (states) => states.contains(WidgetState.pressed) ? 1 : 4,
           ),
         ),
         child: Padding(
@@ -66,7 +67,7 @@ class PrimaryButton extends StatelessWidget {
                           color: AppColors.textPrimary,
                           fontSize: titleSize,
                           fontWeight: FontWeight.bold,
-                          height: 1.1,
+                          height: 1.05,
                         ),
                       ),
                       Text(
@@ -74,7 +75,7 @@ class PrimaryButton extends StatelessWidget {
                         style: TextStyle(
                           color: AppColors.textPrimary,
                           fontSize: bodySize,
-                          height: 1.1,
+                          height: 1.05,
                         ),
                       ),
                     ],
