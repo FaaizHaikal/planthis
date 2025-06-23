@@ -22,8 +22,8 @@ class LahanSayaState {
   }) {
     return LahanSayaState(
       selectedCoordinate: selectedCoordinate ?? this.selectedCoordinate,
-      scanResponse: scanResponse ?? this.scanResponse,
-      error: error ?? this.error,
+      scanResponse: scanResponse,
+      error: error,
     );
   }
 }
