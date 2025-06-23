@@ -50,6 +50,6 @@ class LahanSayaController extends StateNotifier<LahanSayaState> {
   }
 
   Future<void> setLocation(LatLng location) async {
-    state = state.set(selectedCoordinate: location);
+    state = state.set(selectedCoordinate: location, scanResponse: null);
   }
 }
