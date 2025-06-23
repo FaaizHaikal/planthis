@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_map_tile_caching/flutter_map_tile_caching.dart';
+import 'package:planthis/app/theme/app_colors.dart';
 import 'package:planthis/features/lahan_saya/presentations/widgets/scan_info.dart';
 import 'package:planthis/features/lahan_saya/providers/lahan_saya_provider.dart';
 
@@ -43,12 +44,63 @@ class LahanSayaScreen extends ConsumerWidget {
                         markers: [
                           Marker(
                             point: state.selectedCoordinate!,
-                            width: 40,
-                            height: 40,
-                            child: const Icon(
-                              Icons.location_pin,
-                              color: Colors.red,
-                              size: 40,
+                            width: 120,
+                            height: 80,
+                            child: GestureDetector(
+                              onTap: () {
+                                if (state.scanResponse?.matchingSpecies !=
+                                        null &&
+                                    state
+                                        .scanResponse!
+                                        .matchingSpecies!
+                                        .isNotEmpty) {
+                                  Navigator.pushNamed(
+                                    context,
+                                    '/rekomendasi-pohon',
+                                  );
+                                }
+                              },
+                              child: Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  const Positioned(
+                                    bottom: 0,
+                                    child: Icon(
+                                      Icons.location_pin,
+                                      color: Colors.red,
+                                      size: 50,
+                                    ),
+                                  ),
+                                  if (state.scanResponse?.matchingSpecies !=
+                                          null &&
+                                      state
+                                          .scanResponse!
+                                          .matchingSpecies!
+                                          .isNotEmpty)
+                                    Positioned(
+                                      bottom: 55,
+                                      child: Container(
+                                        padding: const EdgeInsets.symmetric(
+                                          horizontal: 8,
+                                          vertical: 4,
+                                        ),
+                                        decoration: BoxDecoration(
+                                          color: AppColors.primary,
+                                          borderRadius: BorderRadius.circular(
+                                            14,
+                                          ),
+                                        ),
+                                        child: Text(
+                                          "${state.scanResponse!.matchingSpecies!.length} Rekomendasi 🌳",
+                                          style: const TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 12,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                ],
+                              ),
                             ),
                           ),
                         ],
