@@ -3,13 +3,17 @@ class Tree {
   final String? commonName;
   final String? indonesianName;
 
-  const Tree({required this.scientificName, this.commonName, this.indonesianName});
+  const Tree({
+    required this.scientificName,
+    this.commonName,
+    this.indonesianName,
+  });
 
   factory Tree.fromJson(Map<String, dynamic> json) {
     return Tree(
       scientificName: json['scientific_name'],
       commonName: json['common_name'],
-      indonesianName: json['indonesian_name']
+      indonesianName: json['indonesian_name'],
     );
   }
 }

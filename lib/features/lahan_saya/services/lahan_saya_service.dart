@@ -1,4 +1,3 @@
-
 import 'dart:convert';
 
 import 'package:planthis/core/constants.dart';
@@ -8,16 +7,18 @@ import 'package:http/http.dart' as http;
 
 class LahanSayaService {
   static Future<ScanResponse?> scanLocation(LatLng location) async {
-    final params = {
-      'lat': location.latitude,
-      'lon': location.longitude
-    };
+    // final params = {
+    //   'lat': location.latitude,
+    //   'lon': location.longitude
+    // };
 
-    final url = Uri.http(baseUrl, '/dummy_species', params);
+    // final url = Uri.http(baseUrl, '/species', params);
+
+    final url = Uri.http(baseUrl, '/dummy-species');
 
     final response = await http.get(url);
     final json = jsonDecode(response.body);
-    
+
     if (response.statusCode == 200) {
       return ScanResponse.fromJson(json);
     }

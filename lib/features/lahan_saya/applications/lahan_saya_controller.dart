@@ -8,10 +8,12 @@ class LahanSayaController extends StateNotifier<LahanSayaState> {
   LahanSayaController() : super(LahanSayaState.initial()) {
     initializeLocation();
   }
-  
-  Future<void> scanLocation(LatLng location) async {
+
+  Future<void> scanLocation() async {
     try {
-      final response = await LahanSayaService.scanLocation(location);
+      final response = await LahanSayaService.scanLocation(
+        state.selectedCoordinate!,
+      );
       state = state.set(scanResponse: response, error: null);
     } catch (e) {
       state = state.set(scanResponse: null, error: e.toString());
@@ -29,7 +31,9 @@ class LahanSayaController extends StateNotifier<LahanSayaState> {
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
-        state.set(error: "Location Permission is required to use this feature.");
+        state.set(
+          error: "Location Permission is required to use this feature.",
+        );
       }
     }
 
@@ -41,7 +45,7 @@ class LahanSayaController extends StateNotifier<LahanSayaState> {
 
     state = state.set(
       selectedCoordinate: LatLng(position.latitude, position.longitude),
-      error: null
+      error: null,
     );
   }
 
