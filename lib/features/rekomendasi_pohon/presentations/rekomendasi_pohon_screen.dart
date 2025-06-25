@@ -42,7 +42,6 @@ class RekomendasiPohonScreen extends StatelessWidget {
                       color: Theme.of(context).colorScheme.primary,
                     ),
                     title: Text(species),
-                    trailing: const Icon(Icons.arrow_forward_ios, size: 16),
                     onTap: () {
                       // TODO: Implementasi navigasi ke halaman detail pohon
                     },

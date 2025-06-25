@@ -8,26 +8,31 @@ import 'package:http/http.dart' as http;
 class LahanSayaService {
   static Future<ScanResponse?> scanLocation(LatLng location) async {
     try {
-      final url = Uri.http(baseUrl, '/dummy');
-      print('Calling API: $url'); // Debug: Tampilkan URL yang dipanggil
+      // Menggunakan endpoint /species dengan metode GET dan query parameters
+      final url = Uri.http(baseUrl, '/species', {
+        'lat': location.latitude.toString(),
+        'lon': location.longitude.toString(),
+      });
 
+      print('Calling API with GET method: $url');
+
+      // Menggunakan http.get sesuai dengan definisi di backend
       final response = await http.get(url);
 
-      // Debug: Tampilkan status code dan body dari response
       print('Response Status Code: ${response.statusCode}');
       print('Response Body: ${response.body}');
 
       if (response.statusCode == 200) {
         final json = jsonDecode(response.body);
+        // Pastikan model ScanResponse sesuai dengan JSON yang diterima dari /species
         return ScanResponse.fromJson(json);
       } else {
-        // Jika status bukan 200, lempar error dengan informasi
-        throw Exception('Failed to load data from API. Status: ${response.statusCode}');
+        throw Exception(
+            'Failed to load data from API. Status: ${response.statusCode}, Body: ${response.body}');
       }
     } catch (e) {
-      // Jika ada error lain (misal: koneksi gagal), print errornya
       print('Error in LahanSayaService: $e');
-      rethrow; // Lempar kembali error agar ditangkap oleh controller
+      rethrow;
     }
   }
 }
