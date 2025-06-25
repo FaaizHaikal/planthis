@@ -14,6 +14,16 @@ class LahanSayaScreen extends ConsumerWidget {
     final state = ref.watch(lahanSayaControllerProvider);
     final controller = ref.read(lahanSayaControllerProvider.notifier);
 
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final error = state.error;
+      if (error != null && error.isNotEmpty) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(error), backgroundColor: Colors.red),
+        );
+        controller.clearError();
+      }
+    });
+
     final tileProvider = FMTCTileProvider(
       stores: const {'mapStore': BrowseStoreStrategy.readUpdateCreate},
     );
