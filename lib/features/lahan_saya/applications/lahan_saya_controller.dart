@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:planthis/features/lahan_saya/models/scan_response.dart';
 import 'package:planthis/features/lahan_saya/services/lahan_saya_service.dart';
 import 'package:planthis/features/lahan_saya/states/lahan_saya_state.dart';
 
@@ -9,12 +10,14 @@ class LahanSayaController extends StateNotifier<LahanSayaState> {
     initializeLocation();
   }
   
-  Future<void> scanLocation(LatLng location) async {
+  Future<ScanResponse?> scanLocation(LatLng location) async {
     try {
       final response = await LahanSayaService.scanLocation(location);
       state = state.set(scanResponse: response, error: null);
+      return response;
     } catch (e) {
       state = state.set(scanResponse: null, error: e.toString());
+      return null;
     }
   }
 
