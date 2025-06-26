@@ -18,7 +18,6 @@ class LahanSayaService {
     final response = await http.get(url);
     final json = jsonDecode(response.body);
 
-
     if (response.statusCode == 200) {
       return ScanResponse.fromJson(json);
     }
@@ -28,9 +27,7 @@ class LahanSayaService {
   }
 
   static Future<List<Tree>> getDetailsFor(List<String> speciesNames) async {
-    final uri = Uri.https(baseUrl, '/tree-info', {
-      'species': speciesNames,
-    });
+    final uri = Uri.http(baseUrl, '/tree-info', {'species': speciesNames});
 
     final response = await http.get(uri);
     final json = jsonDecode(response.body);

@@ -5,7 +5,6 @@ import 'package:flutter_map_tile_caching/flutter_map_tile_caching.dart';
 import 'package:planthis/app/theme/app_colors.dart';
 import 'package:planthis/features/lahan_saya/presentations/widgets/scan_info.dart';
 import 'package:planthis/features/lahan_saya/providers/lahan_saya_provider.dart';
-import 'package:planthis/features/rekomendasi_pohon/presentations/rekomendasi_pohon_screen.dart';
 
 class LahanSayaScreen extends ConsumerWidget {
   const LahanSayaScreen({super.key});
@@ -21,6 +20,7 @@ class LahanSayaScreen extends ConsumerWidget {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text(error), backgroundColor: Colors.red),
         );
+        print(error);
         controller.clearError();
       }
     });
@@ -96,17 +96,48 @@ class LahanSayaScreen extends ConsumerWidget {
                                           vertical: 4,
                                         ),
                                         decoration: BoxDecoration(
-                                          color: AppColors.primary,
+                                          color:
+                                              state
+                                                      .scanResponse!
+                                                      .matchingSpecies!
+                                                      .isEmpty
+                                                  ? Colors.grey
+                                                  : AppColors.primary,
                                           borderRadius: BorderRadius.circular(
                                             14,
                                           ),
                                         ),
-                                        child: Text(
-                                          "${state.scanResponse!.matchingSpecies!.length} Rekomendasi 🌳",
-                                          style: const TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 12,
-                                          ),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            Text(
+                                              state
+                                                      .scanResponse!
+                                                      .matchingSpecies!
+                                                      .isEmpty
+                                                  ? "Tidak ada rekomendasi"
+                                                  : "${state.scanResponse!.matchingSpecies!.length} Rekomendasi 🌳",
+                                              style: const TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 10,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                            ),
+                                            if (state
+                                                .scanResponse!
+                                                .matchingSpecies!
+                                                .isNotEmpty)
+                                              const Padding(
+                                                padding: EdgeInsets.only(
+                                                  left: 6,
+                                                ),
+                                                child: Icon(
+                                                  Icons.chevron_right,
+                                                  color: Colors.white,
+                                                  size: 18,
+                                                ),
+                                              ),
+                                          ],
                                         ),
                                       ),
                                     ),

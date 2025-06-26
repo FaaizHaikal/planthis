@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
         '/register': (context) => const RegisterScreen(),
         '/login': (context) => const LoginScreen(),
         '/lahan-saya': (context) => const LahanSayaScreen(),
-        '/rekomendasi-pohon': (context) => const RekomendasiPohonScreen()
+        '/rekomendasi-pohon': (context) => const RekomendasiPohonScreen(),
       },
     );
   }

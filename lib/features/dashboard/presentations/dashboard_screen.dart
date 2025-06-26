@@ -55,7 +55,11 @@ class DashboardScreen extends ConsumerWidget {
                         width: 200,
                         height: 200,
                         child: Center(
-                          child: FaIcon(FontAwesomeIcons.seedling, size: 100, color: Colors.white)
+                          child: FaIcon(
+                            FontAwesomeIcons.seedling,
+                            size: 100,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     ),

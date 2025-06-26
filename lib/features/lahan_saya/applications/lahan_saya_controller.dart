@@ -34,20 +34,13 @@ class LahanSayaController extends StateNotifier<LahanSayaState> {
     state = state.set(error: null);
   }
 
-  Future<void> clearError() async {
-    state = state.set(error: null);
-  }
-
   Future<void> initializeLocation() async {
-    try {
-      final serviceEnabled = await Geolocator.isLocationServiceEnabled();
-      if (!serviceEnabled) {
-        // Jika layanan lokasi mati, tidak perlu menampilkan error,
-        // karena kita sudah punya lokasi default.
-        return;
-      }
+    final serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      state.set(error: "Location Service must turned on to use this feature");
+    }
 
-      LocationPermission permission = await Geolocator.checkPermission();
+    LocationPermission permission = await Geolocator.checkPermission();
 
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
@@ -62,7 +55,7 @@ class LahanSayaController extends StateNotifier<LahanSayaState> {
       state.set(error: "Please enable Location Permission in your settings.");
     }
 
-      final position = await Geolocator.getCurrentPosition();
+    final position = await Geolocator.getCurrentPosition();
 
     state = state.set(
       selectedCoordinate: LatLng(position.latitude, position.longitude),
@@ -72,17 +65,5 @@ class LahanSayaController extends StateNotifier<LahanSayaState> {
 
   Future<void> setLocation(LatLng location) async {
     state = state.set(selectedCoordinate: location, scanResponse: null);
-  }
-
-  Future<void> getTreeDetails() async {
-    final species = state.scanResponse?.matchingSpecies;
-    if (species == null || species.isEmpty) return;
-
-    try {
-      final trees = await LahanSayaService.getDetailsFor(species);
-      state = state.set(treeDetails: trees);
-    } catch (e) {
-      state = state.set(error: e.toString());
-    }
   }
 }
