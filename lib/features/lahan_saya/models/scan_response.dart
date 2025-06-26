@@ -15,12 +15,6 @@ class ScanResponse {
     this.soil,
     this.matchingSpecies,
   });
-  const ScanResponse({
-    required this.altitude,
-    this.climate,
-    this.soil,
-    this.matchingSpecies,
-  });
 
   factory ScanResponse.fromJson(Map<String, dynamic> json) {
     return ScanResponse(
