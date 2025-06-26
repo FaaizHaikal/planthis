@@ -28,58 +28,41 @@ class DashboardScreen extends ConsumerWidget {
                 context,
               ).textTheme.bodyMedium?.copyWith(color: Colors.grey[700]),
             ),
-            const Spacer(),
-            // Main Scan Button
-            Center(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Ink(
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: AppColors.primary,
-                      boxShadow: [
-                        BoxShadow(
-                          color: AppColors.primary.withOpacity(0.4),
-                          blurRadius: 10,
-                          spreadRadius: 2,
-                        ),
-                      ],
-                    ),
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.pushNamed(context, '/lahan-saya');
-                      },
-                      borderRadius: BorderRadius.circular(100),
-                      child: const SizedBox(
-                        width: 200,
-                        height: 200,
-                        child: Center(
-                          child: FaIcon(
-                            FontAwesomeIcons.seedling,
-                            size: 100,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
+            Row(
+              spacing: 16.0,
+              children: [
+                Expanded(
+                  child: SecondaryButton(
+                    mainIcon: FontAwesomeIcons.trowel,
+                    iconSizeRatio: 1.5,
+                    title: 'Peralatan Tanam',
+                    onClickRoute: '/peralatan-tanam',
                   ),
-                  const SizedBox(height: 12),
-                  const Text(
-                    "Scan Area",
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.w600),
+                ),
+                Expanded(
+                  child: SecondaryButton(
+                    mainIcon: FontAwesomeIcons.cloudRain,
+                    iconSizeRatio: 1.5,
+                    title: 'Ramalan Cuaca',
+                    onClickRoute: '/ramalan-cuaca',
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-
-            const Spacer(),
-            // Footer or credits
-            Text(
-              "🌍 Powered by World Agroforesty",
-              style: TextStyle(fontSize: 12, color: Colors.grey[500]),
+            PrimaryButton(
+              mainIcon: FontAwesomeIcons.calendarCheck,
+              iconSizeRatio: 1.3,
+              title: 'Tanggal Tanam',
+              body: 'Tanggal yang cocok untuk bertanam',
+              onClickRoute: '/tanggal-tanam',
             ),
-            const SizedBox(height: 12),
+            PrimaryButton(
+              mainIcon: FontAwesomeIcons.seedling,
+              iconSizeRatio: 1.2,
+              title: 'Ilmu Padi',
+              body: 'Pelajari cara merawat pohonmu',
+              onClickRoute: '/ilmu-padi',
+            ),
           ],
         ),
       ),

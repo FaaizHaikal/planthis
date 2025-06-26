@@ -7,7 +7,8 @@ import 'package:planthis/features/auth/presentations/login_screen.dart';
 import 'package:planthis/features/auth/presentations/register_screen.dart';
 import 'package:planthis/features/lahan_saya/presentations/lahan_saya_screen.dart';
 import 'package:flutter_map_tile_caching/flutter_map_tile_caching.dart';
-import 'package:planthis/features/lahan_saya/presentations/rekomendasi_pohon_screen.dart';
+import 'package:planthis/features/rekomendasi_pohon/presentations/rekomendasi_pohon_screen.dart';
+import 'package:planthis/features/ilmu_padi/presentations/ilmu_padi_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -37,7 +38,7 @@ class MyApp extends StatelessWidget {
         '/register': (context) => const RegisterScreen(),
         '/login': (context) => const LoginScreen(),
         '/lahan-saya': (context) => const LahanSayaScreen(),
-        '/rekomendasi-pohon': (context) => const RekomendasiPohonScreen(),
+        '/ilmu-padi': (context) => const IlmuPadiScreen()
       },
     );
   }
