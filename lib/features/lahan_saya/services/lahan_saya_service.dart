@@ -13,7 +13,7 @@ class LahanSayaService {
       'lon': location.longitude.toString(),
     };
 
-    final url = Uri.http(baseUrl, '/dummy-species');
+    final url = Uri.http(baseUrl, '/species', params);
 
     final response = await http.get(url);
     final json = jsonDecode(response.body);
