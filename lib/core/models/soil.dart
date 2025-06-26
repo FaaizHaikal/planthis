@@ -6,7 +6,14 @@ class Soil {
   final double? soc;
   final List<String>? types;
 
-  const Soil({required this.clay, this.sand, this.silt, this.ph, this.soc, this.types});
+  const Soil({
+    required this.clay,
+    this.sand,
+    this.silt,
+    this.ph,
+    this.soc,
+    this.types,
+  });
 
   factory Soil.fromJson(Map<String, dynamic> json) {
     return Soil(
@@ -15,7 +22,7 @@ class Soil {
       silt: (json['silt'] as num).toDouble(),
       ph: (json['ph'] as num).toDouble(),
       soc: (json['soc'] as num).toDouble(),
-      types: List<String>.from(json['types'])
+      types: List<String>.from(json['types']),
     );
   }
 }

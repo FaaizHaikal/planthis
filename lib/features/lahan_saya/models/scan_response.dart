@@ -18,7 +18,8 @@ class ScanResponse {
   factory ScanResponse.fromJson(Map<String, dynamic> json) {
     return ScanResponse(
       altitude: (json['altitude'] as num).toDouble(),
-      climate: json['climate'] != null ? Climate.fromJson(json['climate']) : null,
+      climate:
+          json['climate'] != null ? Climate.fromJson(json['climate']) : null,
       soil: json['soil'] != null ? Soil.fromJson(json['soil']) : null,
       // DIUBAH: Logika untuk mem-parsing daftar objek Pohon
       matchingSpecies: json['matching_species'] != null

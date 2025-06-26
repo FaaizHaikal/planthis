@@ -15,7 +15,7 @@ class LahanSayaController extends StateNotifier<LahanSayaState> {
     initializeLocation();
   }
 
-  Future<ScanResponse?> scanLocation(LatLng location) async {
+  Future<void> scanLocation() async {
     try {
       final response = await LahanSayaService.scanLocation(
         state.selectedCoordinate!,
@@ -49,24 +49,25 @@ class LahanSayaController extends StateNotifier<LahanSayaState> {
 
       LocationPermission permission = await Geolocator.checkPermission();
 
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
-        permission = await Geolocator.requestPermission();
-        if (permission == LocationPermission.denied || permission == LocationPermission.deniedForever) {
-          // Jika izin ditolak, biarkan menggunakan lokasi default.
-          return;
-        }
+        state.set(
+          error: "Location Permission is required to use this feature.",
+        );
       }
+    }
+
+    if (permission == LocationPermission.deniedForever) {
+      state.set(error: "Please enable Location Permission in your settings.");
+    }
 
       final position = await Geolocator.getCurrentPosition();
 
-      state = state.set(
-        selectedCoordinate: LatLng(position.latitude, position.longitude),
-        error: null,
-      );
-    } catch (e) {
-      // Jika ada error saat mendapatkan lokasi, biarkan menggunakan lokasi default.
-      print("Error getting location: $e");
-    }
+    state = state.set(
+      selectedCoordinate: LatLng(position.latitude, position.longitude),
+      error: null,
+    );
   }
 
   Future<void> setLocation(LatLng location) async {

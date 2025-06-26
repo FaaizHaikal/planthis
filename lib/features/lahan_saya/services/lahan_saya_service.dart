@@ -18,6 +18,7 @@ class LahanSayaService {
     final response = await http.get(url);
     final json = jsonDecode(response.body);
 
+
     if (response.statusCode == 200) {
       return ScanResponse.fromJson(json);
     }
