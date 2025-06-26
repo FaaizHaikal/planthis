@@ -16,6 +16,8 @@ class LahanSayaController extends StateNotifier<LahanSayaState> {
   }
 
   Future<void> scanLocation() async {
+
+  Future<void> scanLocation() async {
     try {
       final response = await LahanSayaService.scanLocation(
         state.selectedCoordinate!,

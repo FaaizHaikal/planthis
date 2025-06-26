@@ -11,16 +11,11 @@ class LahanSayaState {
   LahanSayaState({
     required this.selectedCoordinate,
     required this.scanResponse,
-    required this.treeDetails,
     this.error,
   });
 
-  factory LahanSayaState.initial() => LahanSayaState(
-    selectedCoordinate: null,
-    scanResponse: null,
-    treeDetails: null,
-    error: null,
-  );
+  factory LahanSayaState.initial() =>
+      LahanSayaState(selectedCoordinate: null, scanResponse: null, error: null);
 
   LahanSayaState set({
     LatLng? selectedCoordinate,
@@ -31,7 +26,6 @@ class LahanSayaState {
     return LahanSayaState(
       selectedCoordinate: selectedCoordinate ?? this.selectedCoordinate,
       scanResponse: scanResponse,
-      treeDetails: treeDetails,
       error: error,
     );
   }
