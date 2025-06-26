@@ -49,7 +49,10 @@ class IlmuPadiScreen extends StatelessWidget {
               ),
               title: Text(
                 tip.nama,
-                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 17,
+                ),
               ),
               subtitle: Text(
                 tip.jenis,
@@ -57,25 +60,27 @@ class IlmuPadiScreen extends StatelessWidget {
               ),
               children: <Widget>[
                 Container(
-                   width: double.infinity,
-                   padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
-                   color: Colors.white,
-                   child: Column(
-                     crossAxisAlignment: CrossAxisAlignment.start,
-                     children: [
-                        const Divider(),
-                        const SizedBox(height: 8),
-                        Text(tip.deskripsi),
-                        const SizedBox(height: 12),
-                        const Text(
-                          'Manfaat Utama:',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        const SizedBox(height: 4),
-                        ...tip.manfaat.map((manfaat) => _buildBenefitRow(context, manfaat)).toList(),
-                     ],
-                   ),
-                )
+                  width: double.infinity,
+                  padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+                  color: Colors.white,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Divider(),
+                      const SizedBox(height: 8),
+                      Text(tip.deskripsi),
+                      const SizedBox(height: 12),
+                      const Text(
+                        'Manfaat Utama:',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      const SizedBox(height: 4),
+                      ...tip.manfaat
+                          .map((manfaat) => _buildBenefitRow(context, manfaat))
+                          .toList(),
+                    ],
+                  ),
+                ),
               ],
             ),
           );
@@ -90,7 +95,11 @@ class IlmuPadiScreen extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Icon(Icons.check, size: 18, color: Theme.of(context).colorScheme.primary),
+          Icon(
+            Icons.check,
+            size: 18,
+            color: Theme.of(context).colorScheme.primary,
+          ),
           const SizedBox(width: 8),
           Expanded(child: Text(text)),
         ],

@@ -22,10 +22,7 @@ class LahanSayaController extends StateNotifier<LahanSayaState> {
       );
       state = state.set(scanResponse: response, error: null);
     } catch (e) {
-      state = state.set(
-        scanResponse: null,
-        error: e.toString(),
-      );
+      state = state.set(scanResponse: null, error: e.toString());
     }
   }
 

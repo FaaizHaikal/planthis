@@ -50,7 +50,7 @@ class IlmuPadiService {
         'Kurangi frekuensi penyiraman saat musim hujan.',
       ],
     ),
-     const TipsPerawatan(
+    const TipsPerawatan(
       nama: 'Pemangkasan (Pruning)',
       jenis: 'Teknik Perawatan Lanjutan',
       deskripsi:
@@ -62,7 +62,7 @@ class IlmuPadiService {
         'Membentuk struktur pohon agar lebih kokoh dan estetis.',
       ],
     ),
-      const TipsPerawatan(
+    const TipsPerawatan(
       nama: 'Pengendalian Gulma',
       jenis: 'Teknik Perawatan Dasar',
       deskripsi:

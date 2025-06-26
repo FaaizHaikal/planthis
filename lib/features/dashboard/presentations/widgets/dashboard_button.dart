@@ -35,23 +35,14 @@ class DashboardButton extends StatelessWidget {
             child: SizedBox(
               width: 140,
               height: 140,
-              child: Center(
-                child: FaIcon(
-                  icon,
-                  size: 64,
-                  color: Colors.white,
-                ),
-              ),
+              child: Center(child: FaIcon(icon, size: 64, color: Colors.white)),
             ),
           ),
         ),
         const SizedBox(height: 8),
         Text(
           label,
-          style: const TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.w600,
-          ),
+          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
         ),
       ],
     );

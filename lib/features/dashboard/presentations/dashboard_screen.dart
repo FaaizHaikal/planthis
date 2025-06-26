@@ -18,16 +18,16 @@ class DashboardScreen extends ConsumerWidget {
             Text(
               "Planthis",
               style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: AppColors.primary,
-                  ),
+                fontWeight: FontWeight.bold,
+                color: AppColors.primary,
+              ),
             ),
             const SizedBox(height: 8),
             Text(
               "Temukan rekomendasi pohon di lahan sekitarmu",
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: Colors.grey[700],
-                  ),
+              style: Theme.of(
+                context,
+              ).textTheme.bodyMedium?.copyWith(color: Colors.grey[700]),
             ),
             const SizedBox(height: 32),
             const Spacer(),
