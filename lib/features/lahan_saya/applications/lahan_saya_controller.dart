@@ -1,11 +1,17 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:planthis/features/lahan_saya/models/scan_response.dart';
 import 'package:planthis/features/lahan_saya/services/lahan_saya_service.dart';
 import 'package:planthis/features/lahan_saya/states/lahan_saya_state.dart';
 
 class LahanSayaController extends StateNotifier<LahanSayaState> {
+  // Tetapkan koordinat default ke Surabaya, Jawa Timur
+  final LatLng defaultLocation = LatLng(-7.2574719, 112.7520883);
+
   LahanSayaController() : super(LahanSayaState.initial()) {
+    // Atur state awal dengan koordinat default
+    state = state.set(selectedCoordinate: defaultLocation);
     initializeLocation();
   }
 
@@ -18,6 +24,10 @@ class LahanSayaController extends StateNotifier<LahanSayaState> {
     } catch (e) {
       state = state.set(scanResponse: null, error: e.toString());
     }
+  }
+
+  Future<void> clearError() async {
+    state = state.set(error: null);
   }
 
   Future<void> initializeLocation() async {

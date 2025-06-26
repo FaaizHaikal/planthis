@@ -1,4 +1,5 @@
 {
-  "cmake.sourceDirectory": "/home/faaiz/my-projects/planthis/windows/runner",
-  "java.configuration.updateBuildConfiguration": "interactive"
+  "cmake.sourceDirectory": "C:/Users/snsv/Documents/Kuliah_ITS/Journey Chapter 6/Human Computer Interaction/FP/planthis/linux/flutter",
+  "java.configuration.updateBuildConfiguration": "interactive",
+  "cmake.ignoreCMakeListsMissing": true
 }

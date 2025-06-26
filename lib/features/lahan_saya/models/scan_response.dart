@@ -6,7 +6,8 @@ class ScanResponse {
   final double? altitude;
   final Climate? climate;
   final Soil? soil;
-  final List<String>? matchingSpecies;
+  final List<Tree>?
+  matchingSpecies; // DIUBAH: dari List<String> menjadi List<Tree>
 
   const ScanResponse({
     required this.altitude,
@@ -21,9 +22,12 @@ class ScanResponse {
       climate:
           json['climate'] != null ? Climate.fromJson(json['climate']) : null,
       soil: json['soil'] != null ? Soil.fromJson(json['soil']) : null,
+      // DIUBAH: Logika untuk mem-parsing daftar objek Pohon
       matchingSpecies:
           json['matching_species'] != null
-              ? List<String>.from(json['matching_species'])
+              ? (json['matching_species'] as List)
+                  .map((item) => Tree.fromJson(item as Map<String, dynamic>))
+                  .toList()
               : null,
     );
   }
