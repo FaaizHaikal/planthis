@@ -1,11 +1,9 @@
-import 'package:planthis/core/models/tree.dart';
 import 'package:planthis/features/lahan_saya/models/scan_response.dart';
 import 'package:latlong2/latlong.dart';
 
 class LahanSayaState {
   final LatLng? selectedCoordinate;
   final ScanResponse? scanResponse;
-  final List<Tree>? treeDetails;
   final String? error;
 
   LahanSayaState({
@@ -20,7 +18,6 @@ class LahanSayaState {
   LahanSayaState set({
     LatLng? selectedCoordinate,
     ScanResponse? scanResponse,
-    List<Tree>? treeDetails,
     String? error,
   }) {
     return LahanSayaState(
