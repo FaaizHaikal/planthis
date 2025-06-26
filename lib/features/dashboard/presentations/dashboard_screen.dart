@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:planthis/app/theme/app_colors.dart';
+import 'package:planthis/features/dashboard/presentations/widgets/dashboard_button.dart';
 
 class DashboardScreen extends ConsumerWidget {
   const DashboardScreen({super.key});
@@ -28,41 +29,35 @@ class DashboardScreen extends ConsumerWidget {
                 context,
               ).textTheme.bodyMedium?.copyWith(color: Colors.grey[700]),
             ),
-            Row(
-              spacing: 16.0,
+            const Spacer(),
+            // Main Scan Button
+            Center(
+              child: Column(
+              mainAxisSize: MainAxisSize.min,
               children: [
-                Expanded(
-                  child: SecondaryButton(
-                    mainIcon: FontAwesomeIcons.trowel,
-                    iconSizeRatio: 1.5,
-                    title: 'Peralatan Tanam',
-                    onClickRoute: '/peralatan-tanam',
-                  ),
+                DashboardButton(
+                  icon: FontAwesomeIcons.seedling,
+                  label: "Scan Area",
+                  onTap: () => Navigator.pushNamed(context, '/lahan-saya'),
                 ),
-                Expanded(
-                  child: SecondaryButton(
-                    mainIcon: FontAwesomeIcons.cloudRain,
-                    iconSizeRatio: 1.5,
-                    title: 'Ramalan Cuaca',
-                    onClickRoute: '/ramalan-cuaca',
-                  ),
+                const SizedBox(height: 24),
+                DashboardButton(
+                  icon: FontAwesomeIcons.tree,
+                  label: "Ilmu Padi",
+                  onTap: () => Navigator.pushNamed(context, '/ilmu-padi'),
                 ),
               ],
             ),
-            PrimaryButton(
-              mainIcon: FontAwesomeIcons.calendarCheck,
-              iconSizeRatio: 1.3,
-              title: 'Tanggal Tanam',
-              body: 'Tanggal yang cocok untuk bertanam',
-              onClickRoute: '/tanggal-tanam',
+
             ),
-            PrimaryButton(
-              mainIcon: FontAwesomeIcons.seedling,
-              iconSizeRatio: 1.2,
-              title: 'Ilmu Padi',
-              body: 'Pelajari cara merawat pohonmu',
-              onClickRoute: '/ilmu-padi',
+
+            const Spacer(),
+            // Footer or credits
+            Text(
+              "🌍 Powered by World Agroforesty",
+              style: TextStyle(fontSize: 12, color: Colors.grey[500]),
             ),
+            const SizedBox(height: 12),
           ],
         ),
       ),
