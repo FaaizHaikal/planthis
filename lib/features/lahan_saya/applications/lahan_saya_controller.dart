@@ -17,13 +17,25 @@ class LahanSayaController extends StateNotifier<LahanSayaState> {
 
   Future<ScanResponse?> scanLocation(LatLng location) async {
     try {
-      final response = await LahanSayaService.scanLocation(location);
-      state = state.set(scanResponse: response, error: null);
-      return response;
+      final response = await LahanSayaService.scanLocation(
+        state.selectedCoordinate!,
+      );
+      state = state.set(scanResponse: response, treeDetails: null, error: null);
     } catch (e) {
-      state = state.set(scanResponse: null, error: e.toString());
-      return null;
+      state = state.set(
+        scanResponse: null,
+        treeDetails: null,
+        error: e.toString(),
+      );
     }
+  }
+
+  Future<void> clearError() async {
+    state = state.set(error: null);
+  }
+
+  Future<void> clearError() async {
+    state = state.set(error: null);
   }
 
   Future<void> initializeLocation() async {
@@ -58,6 +70,18 @@ class LahanSayaController extends StateNotifier<LahanSayaState> {
   }
 
   Future<void> setLocation(LatLng location) async {
-    state = state.set(selectedCoordinate: location);
+    state = state.set(selectedCoordinate: location, scanResponse: null);
+  }
+
+  Future<void> getTreeDetails() async {
+    final species = state.scanResponse?.matchingSpecies;
+    if (species == null || species.isEmpty) return;
+
+    try {
+      final trees = await LahanSayaService.getDetailsFor(species);
+      state = state.set(treeDetails: trees);
+    } catch (e) {
+      state = state.set(error: e.toString());
+    }
   }
 }
